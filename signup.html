@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>회원가입·휴대폰 본인인증 - 두근어장</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #f5f2ef; --card: #fff; --ink: #1d1a18; --sub: #7d746d; --line: #e9e3dd; --pri: #ff5a5f; --pri2: #ff8a5b; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans KR', system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; }
+  a { color: inherit; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  header { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-weight: 900; font-size: 22px; letter-spacing: -1px; background: linear-gradient(135deg, var(--pri), var(--pri2)); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; }
+  h1 { font-size: 26px; letter-spacing: -1px; margin: 18px 0 6px; }
+  .sub { color: var(--sub); }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 380px); gap: 20px; margin-top: 24px; align-items: start; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border-radius: 18px; padding: 20px; border: 1px solid var(--line); }
+  ol { padding-left: 20px; } ol li { margin-bottom: 10px; }
+  .phone { background: var(--card); border-radius: 28px; border: 8px solid #2b2522; padding: 26px 18px; }
+  .phone .logo { display: block; text-align: center; font-size: 28px; }
+  .phone p.t { text-align: center; color: var(--sub); font-size: 13px; margin-bottom: 16px; }
+  .rules { background: #f7f4f1; border-radius: 12px; padding: 12px; font-size: 12.5px; color: var(--sub); margin-bottom: 12px; }
+  .rules b { color: var(--ink); }
+  .check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; margin-bottom: 12px; }
+  .btn { width: 100%; height: 50px; border: 0; border-radius: 14px; background: linear-gradient(135deg, var(--pri), var(--pri2)); color: #fff; font: 700 16px 'Noto Sans KR', sans-serif; cursor: pointer; }
+  .btn:disabled { opacity: .4; }
+  .msg { font-size: 13px; color: var(--pri); text-align: center; min-height: 20px; margin-top: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+  td, th { border-bottom: 1px solid var(--line); padding: 8px 4px; text-align: left; vertical-align: top; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><a class="logo" href="index.html">두근어장</a><span class="sub" style="font-size:13px">만 19세 이상 이용</span></header>
+
+  <h1>회원가입 · 휴대폰 본인인증</h1>
+  <p class="sub">두근어장 앱(Android·iOS)의 가입 첫 화면이에요. 모든 회원은 가입할 때 포트원(다날) 휴대폰 본인인증을 거쳐요.</p>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <h2 style="font-size:17px;margin-bottom:10px">가입 절차</h2>
+        <ol>
+          <li><b>이용약관·개인정보처리방침 동의</b> — 만 19세 이상임을 확인해요.</li>
+          <li><b>휴대폰 본인인증</b> — [휴대폰 본인인증] 버튼을 누르면 포트원 본인인증 창(다날)이 열려요. 이름·생년월일·휴대폰 번호로 인증해요.</li>
+          <li><b>서버에서 인증 결과 재확인</b> — 앱 서버가 포트원에 인증 결과를 직접 조회해 만 19세 이상인지 확인하고, 만 19세 미만은 가입할 수 없어요.</li>
+          <li><b>중복 가입 확인</b> — 인증 고유값(CI)으로 한 사람당 한 계정만 만들 수 있고, 이용 정지된 사람은 다시 가입할 수 없어요.</li>
+          <li><b>프로필 만들기</b> — 대화명·지역·자기소개를 입력하면 가입 완료. 성별·나이는 인증 결과로 정해져 바꿀 수 없어요.</li>
+        </ol>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h2 style="font-size:17px;margin-bottom:6px">본인인증으로 받는 정보와 보관</h2>
+        <table>
+          <tr><th>항목</th><th>쓰는 곳</th><th>저장</th></tr>
+          <tr><td>생년월일</td><td>만 19세 이상 확인</td><td>출생연도만 저장</td></tr>
+          <tr><td>성별</td><td>프로필 표시</td><td>저장</td></tr>
+          <tr><td>CI(연계정보)</td><td>1인 1계정, 정지 회원 재가입 차단</td><td>암호화(HMAC)한 값만 저장</td></tr>
+          <tr><td>이름·휴대폰 번호</td><td>본인 확인</td><td><b>저장하지 않음</b></td></tr>
+        </table>
+        <p class="sub" style="font-size:13px;margin-top:8px">자세한 내용은 <a href="privacy.html">개인정보처리방침</a>을 확인해 주세요.</p>
+      </div>
+    </div>
+
+    <div class="phone" aria-label="앱 가입 화면">
+      <span class="logo">두근어장</span>
+      <p class="t">토크 올리고, 주변 사람에게 쪽지 보내기</p>
+      <div class="rules">
+        <b>휴대폰 본인인증이 필요해요</b><br>
+        · 만 19세 이상만 이용할 수 있어요.<br>
+        · 이름·전화번호는 저장하지 않아요.<br>
+        · 이미 가입했다면 본인인증만 하면 내 계정으로 다시 들어가요.<br>
+        · 안전을 위해 대화 내용은 서버에 보관돼요.
+      </div>
+      <label class="check"><input type="checkbox" id="agree"> <span>만 19세 이상이며 <a href="terms.html">이용약관</a>과 <a href="privacy.html">개인정보처리방침</a>에 동의합니다</span></label>
+      <button class="btn" id="verify" disabled>휴대폰 본인인증</button>
+      <div class="msg" id="msg"></div>
+    </div>
+  </div>
+</div>
+
+<footer class="bizfoot" style="max-width:880px;margin:40px auto 0;padding:24px 20px 48px;border-top:1px solid #e9e3dd;font:13px/1.8 'Noto Sans KR',system-ui,sans-serif;color:#7d746d">
+  <nav style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:12px;font-weight:700"><a href="index.html" style="color:#1d1a18">서비스 소개</a><a href="signup.html" style="color:#1d1a18">회원가입·본인인증</a><a href="terms.html" style="color:#1d1a18">이용약관</a><a href="privacy.html" style="color:#1d1a18">개인정보처리방침</a><a href="index.html#refund" style="color:#1d1a18">환불 정책</a></nav>
+  상호 홀리핏 | 대표자 박재영 | 사업자등록번호 847-08-01985<br>
+  주소 서울특별시 성북구 종암로27길 25-9, 2층 (종암동)<br>
+  전화 070-7537-2094 | 이메일 qkrwodud818@gmail.com<br>
+  © 2026 홀리핏. All rights reserved.
+</footer>
+
+
+<script>
+  const agree = document.getElementById('agree'), btn = document.getElementById('verify'), msg = document.getElementById('msg');
+  agree.onchange = () => { btn.disabled = !agree.checked; };
+  // 계약 완료 후 앱에서는 PortOne.requestIdentityVerification({ storeId, channelKey, identityVerificationId, bypass: { danal: { AGELIMIT: 19 } } }) 로 다날 본인인증 창이 열려요.
+  btn.onclick = () => { msg.textContent = '본인인증 서비스 연동을 준비 중이에요. (포트원·다날 계약 진행 중) 앱 출시 후 이용할 수 있어요.'; };
+</script>
+</body>
+</html>
